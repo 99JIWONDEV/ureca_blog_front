@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import css from './registerpage.module.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const RegisterPage = () => {
   const [username, setUsername] = useState('')
@@ -10,6 +11,7 @@ export const RegisterPage = () => {
   const [errPassword, setErrPassword] = useState('')
   const [errPasswordConfirm, setErrPasswordConfirm] = useState('')
   const [registerState, setRegisterState] = useState('')
+  const navigate = useNavigate()
 
   const validateUsername = value => {
     if (!value) {
@@ -90,6 +92,7 @@ export const RegisterPage = () => {
       console.log('회원가입 성공', response.data)
       console.log('회원가입 성공', response.status)
       setRegisterState('등록완료')
+      navigate('/login')
     } catch (err) {
       console.log('회원가입 실패', err)
       if (err.response) {
